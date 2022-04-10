@@ -26,7 +26,9 @@ def add_task(count):
 
 
 st.title("脳内のタスクを整理しよう!")
-st.sidebar.write("脳内比率が大きいtaskほど強調されるよ!")
+st.sidebar.write("""脳内比率が大きいtaskほど  
+画像に強調されて表示されるよ!""")
+st.sidebar.write("taskを入力してね")
 
 texts=create_task()
 texts=" ".join(texts)
@@ -36,3 +38,12 @@ if input_count:
     add_texts=add_task(input_count)
     add_texts=" ".join(add_texts)
     texts+=" "+add_texts
+
+font_path="/Library/Fonts/Arial Unicode.ttf"
+wc=WordCloud(width=1280, height=720, background_color="white", font_path=font_path)
+wc.generate(texts)
+wc.to_file("wc.png")
+
+image = Image.open('wc.png')
+
+st.image(image, caption="""あなたの脳内のタスクを可視化しました。画像はpng形式で保存できます。待ち受け画面にしていつでも思い出せるようにしましょう!!""")
