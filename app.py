@@ -23,3 +23,16 @@ def add_task(count):
         text=" ".join(text)
         add_texts.append(text)
     return add_texts
+
+
+st.title("脳内のタスクを整理しよう!")
+st.sidebar.write("脳内比率が大きいtaskほど強調されるよ!")
+
+texts=create_task()
+texts=" ".join(texts)
+
+input_count=st.sidebar.number_input("追加するtaskの数を入力してください", 0, 20)
+if input_count:
+    add_texts=add_task(input_count)
+    add_texts=" ".join(add_texts)
+    texts+=" "+add_texts
