@@ -1,6 +1,7 @@
 import streamlit as st
 from PIL import Image
 from wordcloud import WordCloud
+import matplotlib.pyplot as plt
 
 def create_task(count=3):
     texts=[]
@@ -42,8 +43,9 @@ if input_count:
 font_path="/Library/Fonts/Arial Unicode.ttf"
 wc=WordCloud(width=1280, height=720, background_color="white", font_path=font_path)
 wc.generate(texts)
-wc.to_file("wc.png")
 
-image = Image.open('wc.png')
-
-st.image(image, caption="""あなたの脳内のタスクを可視化しました。画像はpng形式で保存できます。待ち受け画面にしていつでも思い出せるようにしましょう!!""")
+plt.axis("off")
+plt.tight_layout()
+st.set_option('deprecation.showPyplotGlobalUse', False)
+plt.imshow(wc, interpolation='bilinear')
+st.pyplot()
