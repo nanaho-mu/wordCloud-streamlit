@@ -40,8 +40,8 @@ if input_count:
     add_texts=" ".join(add_texts)
     texts+=" "+add_texts
 
-font_path="Arial Unicode.ttf"
-wc=WordCloud(width=1280, height=720, background_color="white", font_path=font_path)
+# font_path="Arial Unicode.ttf"
+wc=WordCloud(width=1280, height=720, background_color="white")
 wc.generate(texts)
 
 plt.axis("off")
